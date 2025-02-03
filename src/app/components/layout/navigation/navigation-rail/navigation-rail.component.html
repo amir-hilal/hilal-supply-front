@@ -1,0 +1,105 @@
+<div class="navigation expanded flex flex-column justify-content-between">
+  <div class="flex flex-column">
+    @if (navigation.expanded()) {
+    <img
+      class="navigation-logo align-self-start"
+      [src]="'/img/logo.png'"
+      width="80"
+      alt="Hilal Pines Logo"
+    />
+    } @else {
+    <img
+      class="navigation-logo align-self-center"
+      [src]="'/img/logo-mobile.png'"
+      width="40"
+      alt="Hilal Pines Logo"
+    />
+    }
+
+    <mat-divider />
+    <!-- Start of scrollable content using virtual scroll -->
+    <cdk-virtual-scroll-viewport itemSize="50" class="navigation-viewport">
+      <div *cdkVirtualFor="let link of navigationLinks" class="navigation-item">
+        <div class="navigation-links">
+          <div class="navigation-links-shortcuts">
+            <p>Shortcuts</p>
+            <ul>
+              <li
+                type="button"
+                tabindex="1"
+                [routerLink]="['/home']"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
+                <div>
+                  <img [src]="'/icons/insert-chart.svg'" alt="Home icon" />
+                  <span>Home</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <mat-divider />
+
+          <div class="navigation-links-categories">
+            <p>Categories</p>
+            <ul>
+              @for (category of link.categories; track $index) {
+              <li
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                type="button"
+                (click)="navigation.expand(category.id)"
+                (keydown.enter)="navigation.expand(category.id)"
+                tabindex="2"
+                class="links-container"
+                [id]="category.id + '-container'"
+              >
+                <div>
+                  <img [src]="'/icons/' + category.icon" [alt]="category.alt" />
+                  <span>{{ category.name }}</span>
+                  <img
+                    [src]="'/icons/arrow_drop_down.svg'"
+                    alt="Drop down arrow"
+                  />
+                </div>
+
+                <ul
+                  class="container-items"
+                  [class.hidden]="!navigation.isOnLink(category.subRoutes)"
+                  [id]="category.id"
+                >
+                  @for ( subLink of category.subLinks; track $index ) {
+                  <li
+                    [routerLink]="[subLink.route]"
+                    routerLinkActive="active"
+                    (click)="$event.stopPropagation()"
+                    (keydown.enter)="$event.stopPropagation()"
+                    tabindex="3"
+                  >
+                    <img [src]="'/icons/' + subLink.icon" [alt]="subLink.alt" />
+                    <span>{{ subLink.name }}</span>
+                  </li>
+                  }
+                </ul>
+              </li>
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+    </cdk-virtual-scroll-viewport>
+    <!-- End of scrollable content -->
+  </div>
+
+  <div class="navigation-arrow-container">
+    <img
+      (click)="navigation.navigationToggle('rail')"
+      (keydown.enter)="navigation.navigationToggle('rail')"
+      class="navigation-arrow"
+      [src]="'/icons/arrow-navigation-rail.svg'"
+      alt="Navigation collapse/expand arrow"
+      tabindex="9"
+    />
+  </div>
+</div>

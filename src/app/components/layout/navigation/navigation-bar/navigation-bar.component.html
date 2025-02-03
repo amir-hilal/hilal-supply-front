@@ -1,0 +1,97 @@
+<div class="navigation-bar">
+  <img
+    [src]="'/icons/menu.svg'"
+    width="40"
+    alt="Hamburger menu"
+    (click)="navigation.navigationToggle('bar')"
+    (keydown.enter)="navigation.navigationToggle('bar')"
+    tabindex="1"
+  />
+
+  <!-- <div class="user-actions">
+    <img
+      (click)="userAction.toggleDialog()"
+      (keydown.enter)="userAction.toggleDialog()"
+      tabindex="2"
+      [src]="user().photoUrl"
+
+      alt="User Profile Picture"
+    />
+  </div> -->
+</div>
+
+<div class="navigation-bar-menu" [class.expanded]="navigation.isMenuOpen()">
+  <div class="flex width-full justify-content-center">
+    <img
+      [src]="'/img/logo-mobile.png'"
+      width="50"
+      alt="Hilal Pines Logo for mobile"
+    />
+  </div>
+
+  <mat-divider />
+
+  <!-- Virtual Scroll Implementation -->
+  <cdk-virtual-scroll-viewport itemSize="50" class="navigation-viewport">
+    <div
+      *cdkVirtualFor="let link of navigationLinks"
+      class="navigation-links-categories"
+    >
+      <ul>
+        <li
+          type="button"
+          tabindex="1"
+          [routerLink]="['/home']"
+          routerLinkActive="active"
+        >
+          <div>
+            <img [src]="'/icons/insert-chart.svg'" alt="Dashboard icon" />
+            <span>Home</span>
+          </div>
+        </li>
+        @for (category of link.categories; track $index) {
+        <li
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          type="button"
+          (click)="navigation.expand(category.id)"
+          (keydown.enter)="navigation.expand(category.id)"
+          tabindex="2"
+          class="links-container"
+          [id]="category.id + '-container'"
+        >
+          <div>
+            <img [src]="'/icons/' + category.icon" [alt]="category.alt" />
+            <span>{{ category.name }}</span>
+            <img [src]="'/icons/arrow_drop_down.svg'" alt="Drop down arrow" />
+          </div>
+
+          <ul
+            class="container-items"
+            [class.hidden]="!navigation.isOnLink(category.subRoutes)"
+            [id]="category.id"
+          >
+            @for (subLink of category.subLinks; track $index) {
+            <li
+              (click)="$event.stopPropagation()"
+              (keydown.enter)="$event.stopPropagation()"
+              [routerLink]="[subLink.route]"
+              routerLinkActive="active"
+              tabindex="3"
+              class="flex align-items-center gap-1"
+            >
+              <img
+                class="icon"
+                [src]="'/icons/' + subLink.icon"
+                [alt]="subLink.alt"
+              />
+              <span>{{ subLink.name }}</span>
+            </li>
+            }
+          </ul>
+        </li>
+        }
+      </ul>
+    </div>
+  </cdk-virtual-scroll-viewport>
+</div>

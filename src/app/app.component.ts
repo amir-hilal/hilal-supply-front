@@ -6,13 +6,17 @@ import {
   signal,
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { routeAnimations } from './animations/route.animations';
+import { NavigationBarComponent } from './components/layout/navigation/navigation-bar/navigation-bar.component';
+import { NavigationRailComponent } from './components/layout/navigation/navigation-rail/navigation-rail.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, NavigationBarComponent, NavigationRailComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  animations: [routeAnimations],
 })
 export class AppComponent implements OnInit {
   title = 'hilal-supply-front';

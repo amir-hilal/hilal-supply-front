@@ -1,0 +1,85 @@
+/* ------------------------------------------------------------ *\
+  SCSS Functions
+\* ------------------------------------------------------------ */
+@use 'sass:map';
+
+
+$breakpoints: (
+    uhd: 3840px,
+    elp-uhd: 2160px,
+    fhd: 1920px,
+    hd: 1280px,
+    mobile-x-small: 350px,
+    mobile-small: 374px,
+    mobile-medium: 575px,
+    mobile-large: 700px,
+    mobile: 610px,
+    tablet: 1023px,
+    medium-desktop: 1299px,
+    small-desktop: 1199px,
+    large-desktop: 1600px,
+    xl-desktop: 1700px,
+    desktop: 1920px,
+    below-fhd: 1919px,
+    below-uhd: 3839px,
+    below-elp-uhd: 2159px,
+    min-desktop: 1200px,
+);
+
+@function breakpoint-next(
+    $name,
+    $breakpoints: $breakpoints,
+    $breakpoint-names: map.keys($breakpoints)
+) {
+    $n: index($breakpoint-names, $name);
+    @return if(
+        $n != null and $n < length($breakpoint-names),
+        nth($breakpoint-names, $n + 1),
+        null
+    );
+}
+
+
+@function breakpoint-min($name, $breakpoints: $breakpoints) {
+    $min: map.get($breakpoints, $name);
+    @return if($min != 0, $min - 0.02, null);
+}
+
+
+@function breakpoint-max($name, $breakpoints: $breakpoints) {
+    $max: map.get($breakpoints, $name);
+    @return if($max != 0, $max, null);
+}
+
+
+@mixin breakpoint-up($name, $breakpoints: $breakpoints) {
+    $min: breakpoint-min($name, $breakpoints);
+
+    @media (min-width: $min) {
+        @content;
+    }
+}
+
+@mixin breakpoint-down($name, $breakpoints: $breakpoints) {
+    $max: breakpoint-max($name, $breakpoints);
+
+    @if $max == 767px {
+        @media (max-width: $max),
+            screen and (max-width: $responsive-ios) and (orientation: landscape) {
+            @content;
+        }
+    } @else {
+        @media (max-width: $max) {
+            @content;
+        }
+    }
+}
+
+@mixin breakpoint-between($lower, $upper, $breakpoints: $breakpoints) {
+    $min: breakpoint-min($lower, $breakpoints);
+    $max: breakpoint-max($upper, $breakpoints);
+
+    @media (min-width: $min) and (max-width: $max) {
+        @content;
+    }
+}

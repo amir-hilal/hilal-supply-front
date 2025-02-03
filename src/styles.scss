@@ -1,19 +1,60 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
 
-html {
-  @include mat.theme((
-    color: (
-      theme-type: light,
-      primary: mat.$azure-palette,
-      tertiary: mat.$blue-palette,
-    ),
-    typography: Roboto,
-    density: 0,
-  ));
-}/* You can add global styles to this file, and also import other style files */
+@use 'sass:map';
+@use '../public/themes/m3-theme.scss' as *;
+// Plus imports for other components in your app.
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+
+// Comment out the line below if you want to use the pre-defined typography utility classes.
+// For more information: https://material.angular.io/guide/typography#using-typography-styles-in-your-application.
+// @include mat.typography-hierarchy($sita-t-plus-theme);
+
+// Comment out the line below if you want to use the deprecated `color` inputs.
+// @include mat.color-variants-backwards-compatibility($sita-t-plus-theme);
+/* You can add global styles to this file, and also import other style files */
+
+@use '../public/mixings/mixings.scss' as *;
+@use '../public/typography/typography.scss' as *;
+@use '../public/spacing/spacing.scss' as *;
+@use '../public/themes/container-theme.scss' as *;
+@use '../public/themes/custom-theme.scss' as *;
+@use '../public/colors/colors.scss' as *;
+
+@include mat.core();
+
+$light-theme: mat.define-theme(
+    (
+        color: (
+            theme-type: light,
+            use-system-variables: true,
+        ),
+        typography: (
+            use-system-variables: true,
+        ),
+    )
+);
+
+:root {
+  @include mat.all-component-themes($light-theme);
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    background-color: var(--bg-dim);
+    transition: background-color 250ms;
+}body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}

@@ -1,0 +1,23 @@
+@use '../mixings/mixings' as *;
+
+:root {
+    --spacing-lg: 2rem; // 24dp > 24pt
+    --spacing-sm: 1.5rem; // 18dp > 18pt
+
+    --radius-lg: 12px;
+    --radius-sm: 8px;
+
+    --navigation-open: 256px;
+    --navigation-collapsed: 96px;
+    --user-actions-rail: 64px;
+
+    --padding: var(--spacing-lg);
+    --margin: var(--spacing-lg);
+    --radius: var(--radius-lg);
+
+    @include breakpoint-down(mobile-large) {
+        --padding: var(--spacing-sm);
+        --margin: var(--spacing-sm);
+        --radius: var(--radius-sm);
+    }
+}

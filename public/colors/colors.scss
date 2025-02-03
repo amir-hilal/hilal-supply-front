@@ -1,0 +1,87 @@
+:root {
+        /* Backgrounds */
+        --bg-bright: #f9f9ff;
+        --bg-neutral: #f0f0f7;
+        --bg-dim: #e7e8ee;
+        --on-bg: #2e3035;
+
+        // Outlines
+        --outline: #73777f;
+        --outline-variant: #c3c6cf;
+
+        // Elevations (Shadows)
+        --elevation-1: 0px 1px 2px rgba(0, 0, 0, 0.3),
+            0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+        --elevation-2: 0px 1px 2px rgba(0, 0, 0, 0.3),
+            0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+        --elevation-3: 0px 4px 8px 3px rgba(0, 0, 0, 0.15),
+            0px 1px 3px rgba(0, 0, 0, 0.3);
+
+        // Colors
+        --primary: #8CAB3E;
+        --secondary: #8D6E40;
+        --tertiary: #ffffff;
+        --error: #da342e;
+        --success: #11a44e;
+        --pending: #b99400;
+        --cancelled: #d7d7d7;
+        --pale-pink: #ffd9de;
+        --skyblue: #c3e8ff;
+
+        --on-primary: #ffffff;
+        --on-secondary: #001e2d;
+        --on-tertiary: #231b00;
+        --on-error: #ffffff;
+        --on-pending: #ffffff;
+        --on-success: #ffffff;
+        --on-cancelled: #3b3b3b;
+        --on-pale-pink: #3a0716;
+        --on-skyblue: #001e2c;
+
+        --hover-primary: rgba(60, 96, 143, 0.075);
+        --active-primary: rgba(60, 96, 143, 0.1);
+
+    // [data-theme='dark'] {
+    //     // Backgrounds
+    //     --bg-bright: #32353a;
+    //     --bg-neutral: #262a30;
+    //     --bg-dim: #1d2024;
+    //     --on-bg: #fbfaff;
+
+    //     // Outlines
+    //     --outline: #8d9199;
+    //     --outline-variant: #43474e;
+
+    //     // Elevations (Shadows)
+    //     --elevation-1: 0px 1px 3px 1px rgba(0, 0, 0, 0.15),
+    //         0px 1px 2px rgba(0, 0, 0, 0.3);
+    //     --elevation-2: 0px 2px 6px 2px rgba(0, 0, 0, 0.15),
+    //         0px 1px 2px rgba(0, 0, 0, 0.3);
+    //     --elevation-3: 0px 4px 8px 3px rgba(0, 0, 0, 0.15),
+    //         0px 1px 3px rgba(0, 0, 0, 0.3);
+
+    //     // Colors
+    //     --primary: #a5c8ff;
+    //     --secondary: #95d2f9;
+    //     --tertiary: #e3c971;
+    //     --error: #ff5449;
+    //     --success: #49ff95;
+    //     --pending: #fce186;
+    //     --cancelled: #e2e2e2;
+    //     --pale-pink: #713340;
+    //     --skyblue: #004c68;
+
+    //     --on-primary: #00315e;
+    //     --on-secondary: #0f1d23;
+    //     --on-tertiary: #0e0c06;
+    //     --on-error: #ffffff;
+    //     --on-success: #003d20;
+    //     --on-pending: #3b3b3b;
+    //     --on-cancelled: #3b3b3b;
+    //     --on-pale-pink: #ffd9de;
+    //     --on-skyblue: #c3e8ff;
+
+    //     --hover-primary: rgba(165, 200, 255, 0.05);
+    //     --active-primary: rgba(165, 200, 255, 0.1);
+    // }
+}
