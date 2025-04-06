@@ -29,6 +29,7 @@
             <ul>
               @for (shortcut of link.shortcuts; track $index) {
                 <li
+                  [routerLink]="[shortcut.route]"
                   type="button"
                   tabindex="1"
                   routerLinkActive="active"
@@ -86,6 +87,7 @@
                         (keydown.enter)="$event.stopPropagation()"
                         tabindex="3"
                         class="navigation-link-list-item"
+                        type="button"
                       >
                         <span class="material-symbols-outlined">
                           {{ subLink.icon }}
