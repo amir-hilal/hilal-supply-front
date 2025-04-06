@@ -1,41 +1,51 @@
 <div class="navigation expanded flex flex-column justify-content-between">
   <div class="flex flex-column">
     @if (navigation.expanded()) {
-    <img
-      class="navigation-logo align-self-start"
-      [src]="'/img/logo.png'"
-      width="80"
-      alt="Hilal Pines Logo"
-    />
+      <img
+        class="navigation-logo align-self-start"
+        [src]="'/img/logo.png'"
+        width="80"
+        alt="Hilal Pines Logo"
+        [routerLink]="['/home']"
+      />
     } @else {
-    <img
-      class="navigation-logo align-self-center"
-      [src]="'/img/logo-mobile.png'"
-      width="40"
-      alt="Hilal Pines Logo"
-    />
+      <img
+        class="navigation-logo align-self-center"
+        [src]="'/img/logo-mobile.png'"
+        width="40"
+        alt="Hilal Pines Logo"
+        [routerLink]="['/home']"
+      />
     }
 
-    <mat-divider />
     <!-- Start of scrollable content using virtual scroll -->
     <cdk-virtual-scroll-viewport itemSize="50" class="navigation-viewport">
       <div *cdkVirtualFor="let link of navigationLinks" class="navigation-item">
         <div class="navigation-links">
+          <mat-divider />
+
           <div class="navigation-links-shortcuts">
             <p>Shortcuts</p>
             <ul>
-              <li
-                type="button"
-                tabindex="1"
-                [routerLink]="['/home']"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-              >
-                <div>
-                  <img [src]="'/icons/insert-chart.svg'" alt="Home icon" />
-                  <span>Home</span>
-                </div>
-              </li>
+              @for (shortcut of link.shortcuts; track $index) {
+                <li
+                  type="button"
+                  tabindex="1"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  (click)="navigation.expand(shortcut.id)"
+                  (keydown.enter)="navigation.expand(shortcut.id)"
+                  class="links-container"
+                  [id]="shortcut.id + '-container'"
+                >
+                  <div>
+                    <span class="material-symbols-outlined">
+                      {{ shortcut.icon }}
+                    </span>
+                    <p>{{ shortcut.name }}</p>
+                  </div>
+                </li>
+              }
             </ul>
           </div>
 
@@ -45,44 +55,46 @@
             <p>Categories</p>
             <ul>
               @for (category of link.categories; track $index) {
-              <li
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                type="button"
-                (click)="navigation.expand(category.id)"
-                (keydown.enter)="navigation.expand(category.id)"
-                tabindex="2"
-                class="links-container"
-                [id]="category.id + '-container'"
-              >
-                <div>
-                  <img [src]="'/icons/' + category.icon" [alt]="category.alt" />
-                  <span>{{ category.name }}</span>
-                  <img
-                    [src]="'/icons/arrow_drop_down.svg'"
-                    alt="Drop down arrow"
-                  />
-                </div>
-
-                <ul
-                  class="container-items"
-                  [class.hidden]="!navigation.isOnLink(category.subRoutes)"
-                  [id]="category.id"
+                <li
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  type="button"
+                  (click)="navigation.expand(category.id)"
+                  (keydown.enter)="navigation.expand(category.id)"
+                  tabindex="2"
+                  class="links-container"
+                  [id]="category.id + '-container'"
                 >
-                  @for ( subLink of category.subLinks; track $index ) {
-                  <li
-                    [routerLink]="[subLink.route]"
-                    routerLinkActive="active"
-                    (click)="$event.stopPropagation()"
-                    (keydown.enter)="$event.stopPropagation()"
-                    tabindex="3"
+                  <div>
+                    <span class="material-symbols-outlined">
+                      {{ category.icon }}
+                    </span>
+                    <p>{{ category.name }}</p>
+                    <span class="material-symbols-outlined rotate"> arrow_drop_down </span>
+                  </div>
+
+                  <ul
+                    class="container-items"
+                    [class.hidden]="!navigation.isOnLink(category.subRoutes)"
+                    [id]="category.id"
                   >
-                    <img [src]="'/icons/' + subLink.icon" [alt]="subLink.alt" />
-                    <span>{{ subLink.name }}</span>
-                  </li>
-                  }
-                </ul>
-              </li>
+                    @for (subLink of category.subLinks; track $index) {
+                      <li
+                        [routerLink]="[subLink.route]"
+                        routerLinkActive="active"
+                        (click)="$event.stopPropagation()"
+                        (keydown.enter)="$event.stopPropagation()"
+                        tabindex="3"
+                        class="navigation-link-list-item"
+                      >
+                        <span class="material-symbols-outlined">
+                          {{ subLink.icon }}
+                        </span>
+                        <p>{{ subLink.name }}</p>
+                      </li>
+                    }
+                  </ul>
+                </li>
               }
             </ul>
           </div>
@@ -93,13 +105,13 @@
   </div>
 
   <div class="navigation-arrow-container">
-    <img
+    <div
       (click)="navigation.navigationToggle('rail')"
       (keydown.enter)="navigation.navigationToggle('rail')"
       class="navigation-arrow"
-      [src]="'/icons/arrow-navigation-rail.svg'"
-      alt="Navigation collapse/expand arrow"
       tabindex="9"
-    />
+    >
+      <span class="material-symbols-outlined"> chevron_left </span>
+    </div>
   </div>
 </div>

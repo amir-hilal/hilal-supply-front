@@ -22,24 +22,59 @@ export class NavigationBarComponent {
 
   navigationLinks = [
     {
+      shortcuts: [
+        {
+          id: 'products',
+          name: 'Products',
+          icon: 'contract',
+          route: '/products',
+        },
+        {
+          id: 'my-orders',
+          name: 'My Orders',
+          icon: 'deployed_code_account',
+          route: '/my-orders',
+        },
+      ],
+
       categories: [
         {
-          id: 'orders',
-          name: 'Orders',
-          icon: 'orders.svg',
-          alt: 'Orders icon',
+          id: 'admin',
+          name: 'Admin',
+          icon: 'shield_person',
           subLinks: [
             {
-              route: '/orders',
-              name: 'Orders',
-              icon: 'all-orders.svg',
-              alt: 'All orders icon',
+              route: '/admin/dashboard',
+              name: 'Dashboard',
+              icon: 'space_dashboard',
+            },
+            {
+              route: '/admin/orders/retail',
+              name: 'Retail Orders',
+              icon: 'shopping_bag',
+            },
+          ],
+        },
+        {
+          id: 'social-media',
+          name: 'Social Media',
+          icon: 'conversion_path',
+          subLinks: [
+            {
+              route: '/admin/social/facebook',
+              name: 'Facebook',
+              icon: 'conversion_path',
+            },
+            {
+              route: '/admin/social/instagram',
+              name: 'Instagram',
+              icon: 'conversion_path',
             },
           ],
         },
       ].map((category) => ({
         ...category,
-        subRoutes: category.subLinks.map((s) => s.route), // Store sub-routes separately
+        subRoutes: category.subLinks.map((s) => s.route),
       })),
     },
   ];

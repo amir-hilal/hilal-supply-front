@@ -1,10 +1,4 @@
-import {
-  Component,
-  computed,
-  HostListener,
-  OnInit,
-  signal,
-} from '@angular/core';
+import { Component, computed, HostListener, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { routeAnimations } from './animations/route.animations';
 import { NavigationBarComponent } from './components/layout/navigation/navigation-bar/navigation-bar.component';
@@ -40,10 +34,6 @@ export class AppComponent implements OnInit {
   }
 
   prepareRoute(outlet: RouterOutlet): string | undefined {
-    return (
-      outlet &&
-      outlet.activatedRouteData &&
-      outlet.activatedRouteData['animation']
-    );
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
 }

@@ -10,7 +10,6 @@
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
 
-
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
@@ -33,15 +32,15 @@
 @include mat.core();
 
 $light-theme: mat.define-theme(
-    (
-        color: (
-            theme-type: light,
-            use-system-variables: true,
-        ),
-        typography: (
-            use-system-variables: true,
-        ),
-    )
+  (
+    color: (
+      theme-type: light,
+      use-system-variables: true,
+    ),
+    typography: (
+      use-system-variables: true,
+    ),
+  )
 );
 
 :root {
@@ -50,11 +49,10 @@ $light-theme: mat.define-theme(
 
 html,
 body {
-    height: 100%;
-    margin: 0;
-    background-color: var(--bg-dim);
-    transition: background-color 250ms;
-}body {
+  height: 100%;
   margin: 0;
+  background-color: var(--bg-dim);
+  transition: background-color 250ms;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
+  font-size: 16px;
 }
