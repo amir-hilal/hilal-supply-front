@@ -74,7 +74,7 @@ mat-divider {
   }
 
   .navigation-arrow-container {
-    box-shadow: 0px -2px 5px rgba(87, 152, 84, 0.111);
+    box-shadow: 0rem -0.125rem 0.3125rem rgba(87, 152, 84, 0.111);
     display: flex;
 
     .navigation-arrow {
@@ -92,7 +92,7 @@ mat-divider {
 }
 
 .navigation.expanded {
-  width: 256px;
+  width: 16rem;
 
   .navigation-links {
     .navigation-links-categories {
@@ -118,7 +118,7 @@ mat-divider {
 
             display: flex;
             flex-direction: row;
-            gap: 8px;
+            gap: .5rem;
             align-items: center;
           }
         }
@@ -137,7 +137,7 @@ mat-divider {
           display: flex;
           justify-content: start;
           align-items: center;
-          gap: 8px;
+          gap: .5rem;
 
           p {
             margin: 0;
@@ -231,7 +231,7 @@ mat-divider {
 
         div {
           span {
-            width: 24px;
+            width: 1.5rem;
             padding: 0;
 
             &:nth-of-type(2) {
