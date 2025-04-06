@@ -27,6 +27,7 @@
     "@ng-select/ng-select": "^14.2.0",
     "@ngrx/store": "^19.0.1",
     "express": "^4.18.2",
+    "firebase": "^11.6.0",
     "hilal-supply-front": "file:",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

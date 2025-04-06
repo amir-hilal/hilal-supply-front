@@ -7,6 +7,11 @@ export const routes: Routes = [
     data: { animation: 'Login' },
   },
   {
+    path: 'access/:token',
+    loadComponent: () =>
+      import('./auth/access/access.component').then((m) => m.AccessComponent)
+  },
+  {
     path: 'home',
     loadComponent: () => import('./pages/home/home.component').then((m) => m.HomeComponent),
   },
