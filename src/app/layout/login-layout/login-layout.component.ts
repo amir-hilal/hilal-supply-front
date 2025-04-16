@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
   standalone: true,
+  selector: 'app-login-layout',
   imports: [RouterOutlet],
-  template: `<router-outlet></router-outlet>`,
+  template: `<router-outlet />`,
 })
-export class AppComponent {}
+export class LoginLayoutComponent {}

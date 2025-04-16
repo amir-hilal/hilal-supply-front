@@ -1,0 +1,31 @@
+@use '../../../../public/mixings/mixings.scss' as *;
+
+.app {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  color: var(--on-bg);
+  overflow-y: hidden;
+
+  div {
+    overflow-y: auto;
+
+    height: calc(100svh - (var(--padding) * 2));
+    width: 100%;
+
+    padding: var(--padding) 0;
+  }
+}
+
+@include breakpoint-down(mobile-large) {
+  .app {
+    // height: 100vh;
+    flex-direction: column;
+
+    div {
+      width: auto;
+      height: auto;
+    }
+  }
+}

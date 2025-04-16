@@ -8,7 +8,9 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:hilal-supply-front": "node dist/hilal-supply-front/server/server.mjs",
-    "format": "prettier --write \"src/**/*.{ts,html,scss,css,js,json}\""
+    "format": "prettier --write \"src/**/*.{ts,html,scss,css,js,json}\"",
+    "build:ssr": "ng build && ng run hilal-supply-front:server",
+    "prerender": "ng run hilal-supply-front:prerender"
   },
   "private": true,
   "dependencies": {
