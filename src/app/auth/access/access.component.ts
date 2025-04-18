@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { FirebaseService } from '../../services/firebase/firebase.service';
@@ -11,12 +11,10 @@ import { FirebaseService } from '../../services/firebase/firebase.service';
   styleUrl: './access.component.scss',
 })
 export class AccessComponent implements OnInit {
-  constructor(
-    private route: ActivatedRoute,
-    private http: HttpClient,
-    private router: Router,
-    private firebaseService: FirebaseService,
-  ) {}
+  private route = inject(ActivatedRoute);
+  private http = inject(HttpClient);
+  private router = inject(Router);
+  private firebaseService = inject(FirebaseService);
 
   async ngOnInit() {
     const token = this.route.snapshot.paramMap.get('token');
