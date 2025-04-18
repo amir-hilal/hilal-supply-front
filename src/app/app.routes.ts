@@ -9,6 +9,11 @@ export const routes: Routes = [
     component: LoginLayoutComponent,
     children: [
       {
+        path: '',
+        redirectTo: '/home',
+        pathMatch: 'full',
+      },
+      {
         path: 'auth/login',
         loadComponent: () => import('./pages/login/login.component').then((m) => m.LoginComponent),
         data: { animation: 'Login' },
@@ -26,6 +31,11 @@ export const routes: Routes = [
     path: '',
     component: MainLayoutComponent,
     children: [
+      {
+        path: '',
+        redirectTo: '/home',
+        pathMatch: 'full',
+      },
       {
         path: 'home',
         loadComponent: () => import('./pages/home/home.component').then((m) => m.HomeComponent),

@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { signInWithCustomToken } from 'firebase/auth';
 import { firstValueFrom } from 'rxjs';
-import { auth } from '../../services/utils/firebase/firebase';
+import { FirebaseService } from '../../services/firebase/firebase.service';
 
 @Component({
   selector: 'app-access',
@@ -16,6 +15,7 @@ export class AccessComponent implements OnInit {
     private route: ActivatedRoute,
     private http: HttpClient,
     private router: Router,
+    private firebaseService: FirebaseService,
   ) {}
 
   async ngOnInit() {
@@ -25,16 +25,16 @@ export class AccessComponent implements OnInit {
     try {
       const response = await firstValueFrom(
         this.http.get<{ firebaseToken: string }>(
-          `https://auth.hilalpines.com/api/auth/business-login?token=${token}`,
+          `https://hilal-auth-service.vercel.app/api/auth/business-login?token=${token}`,
         ),
       );
-
+      console.log(response);
       if (!response || !response.firebaseToken) {
         throw new Error('Invalid response from server');
       }
 
       const { firebaseToken } = response;
-      await signInWithCustomToken(auth, firebaseToken);
+      await this.firebaseService.signInWithToken(firebaseToken);
       this.router.navigate(['/products']);
     } catch (err) {
       console.error('Login failed', err);

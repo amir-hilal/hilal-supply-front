@@ -1,0 +1,7 @@
+export interface BusinessAccessToken {
+  businessId: string;
+  businessName: string;
+  role: 'business';
+  createdAt: string;
+  used: boolean;
+}
