@@ -9,6 +9,7 @@ import {
   signal,
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { routeAnimations } from '../../animations/route.animations';
 import { NavigationBarComponent } from '../../components/layout/navigation/navigation-bar/navigation-bar.component';
 import { NavigationRailComponent } from '../../components/layout/navigation/navigation-rail/navigation-rail.component';
@@ -23,6 +24,8 @@ import { NavigationRailComponent } from '../../components/layout/navigation/navi
 })
 export class MainLayoutComponent implements OnInit {
   private platformId = inject(PLATFORM_ID);
+  private store = inject(Store);
+
   isMobile = signal(false);
 
   isLoggedIn = computed(() => true);

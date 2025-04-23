@@ -1,9 +1,16 @@
 import { inject, Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { FirebaseApp, getApp, getApps, initializeApp } from 'firebase/app';
-import { Auth, getAuth, signInWithCustomToken, UserCredential } from 'firebase/auth';
+import {
+  Auth,
+  browserLocalPersistence,
+  getAuth,
+  setPersistence,
+  signInWithCustomToken,
+  UserCredential,
+} from 'firebase/auth';
 import { fetchAndActivate, getRemoteConfig, getValue, RemoteConfig } from 'firebase/remote-config';
 import { firebaseConfig } from '../../config/firebase/firebase.config';
-import { Store } from '@ngrx/store';
 import { setError } from '../../store/error/error.index';
 
 @Injectable({
@@ -20,6 +27,11 @@ export class FirebaseService {
       minimumFetchIntervalMillis: 3600000, // fetch every hour
       fetchTimeoutMillis: 60000, // set fetch timeout to 1 minute
     };
+
+    setPersistence(this.auth, browserLocalPersistence).catch((err) => {
+      this.store.dispatch(setError({ message: 'Failed to set auth persistence.' }));
+      console.error('Auth persistence error:', err);
+    });
   }
 
   getApp(): FirebaseApp {
@@ -44,5 +56,4 @@ export class FirebaseService {
       return [];
     }
   }
-
 }

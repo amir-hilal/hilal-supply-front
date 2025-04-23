@@ -5,15 +5,11 @@ export const selectAuthState = createFeatureSelector<AuthState>('auth');
 
 export const selectIsAuthenticated = createSelector(
   selectAuthState,
-  state => state.isAuthenticated
+  (state) => state.isAuthenticated,
 );
 
-export const selectUserRole = createSelector(
-  selectAuthState,
-  state => state.role
-);
+export const selectUserRole = createSelector(selectAuthState, (state) => state.role);
 
-export const selectUserEmail = createSelector(
-  selectAuthState,
-  state => state.email
-);
+export const selectUserEmail = createSelector(selectAuthState, (state) => state.email);
+
+export const selectAuthReady = createSelector(selectAuthState, (state) => state.authReady);

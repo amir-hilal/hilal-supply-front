@@ -3,6 +3,8 @@ export interface AuthState {
   email: string | null;
   role: 'guest' | 'business' | 'admin';
   isAuthenticated: boolean;
+  authReady: boolean;
+
 }
 
 export const initialAuthState: AuthState = {
@@ -10,4 +12,5 @@ export const initialAuthState: AuthState = {
   email: null,
   role: 'guest',
   isAuthenticated: false,
+  authReady: false,
 };
