@@ -1,8 +1,10 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { FirebaseApp, getApp, getApps, initializeApp } from 'firebase/app';
 import { Auth, getAuth, signInWithCustomToken, UserCredential } from 'firebase/auth';
 import { fetchAndActivate, getRemoteConfig, getValue, RemoteConfig } from 'firebase/remote-config';
 import { firebaseConfig } from '../../config/firebase/firebase.config';
+import { Store } from '@ngrx/store';
+import { setError } from '../../store/error/error.index';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +13,7 @@ export class FirebaseService {
   private app: FirebaseApp = getApps().length ? getApp() : initializeApp(firebaseConfig);
   private auth: Auth = getAuth(this.app);
   private remoteConfig: RemoteConfig = getRemoteConfig(this.app);
+  private store = inject(Store);
 
   constructor() {
     this.remoteConfig.settings = {
@@ -37,8 +40,9 @@ export class FirebaseService {
       const jsonStr = getValue(this.remoteConfig, 'admin').asString();
       return JSON.parse(jsonStr) as string[];
     } catch (err) {
-      console.error('Failed to fetch admin config:', err);
+      this.store.dispatch(setError({ message: 'Something wrong happened.' }));
       return [];
     }
   }
+
 }

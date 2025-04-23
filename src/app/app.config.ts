@@ -8,6 +8,7 @@ import { routes } from './app.routes';
 import { authReducer } from './store/auth/auth.index';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { isDevMode } from '@angular/core';
+import { errorReducer } from './store/error/error.index';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,6 +19,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideStore({
       auth: authReducer,
+      error: errorReducer
     }),
     provideStoreDevtools({
       maxAge: 25,
