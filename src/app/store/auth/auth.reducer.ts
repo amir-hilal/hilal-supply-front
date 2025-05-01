@@ -5,11 +5,10 @@ import { setAuthReady } from './auth.actions';
 
 export const authReducer = createReducer(
   initialAuthState,
-  on(AuthActions.loginSuccess, (state, { uid, email, role }) => ({
+  on(AuthActions.loginSuccess, (state, { uid, email }) => ({
     ...state,
     uid,
     email,
-    role,
     isAuthenticated: true,
   })),
   on(AuthActions.logout, () => initialAuthState),

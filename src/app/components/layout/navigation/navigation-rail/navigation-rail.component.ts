@@ -27,12 +27,6 @@ export class NavigationRailComponent {
           icon: 'contract',
           route: '/products',
         },
-        {
-          id: 'my-orders',
-          name: 'My Orders',
-          icon: 'deployed_code_account',
-          route: '/my-orders',
-        },
       ],
 
       categories: [

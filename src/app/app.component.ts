@@ -33,14 +33,11 @@ export class AppComponent implements OnInit {
     const auth = this.firebaseService.getAuth();
     onAuthStateChanged(auth, async (user) => {
       if (user) {
-        const adminEmails = await this.firebaseService.getAdminEmails();
-        const role = adminEmails.includes(user.email ?? '') ? 'admin' : 'business';
-
         this.store.dispatch(
           loginSuccess({
+            name: user.displayName ?? '',
             uid: user.uid,
             email: user.email ?? '',
-            role,
           }),
         );
       } else {

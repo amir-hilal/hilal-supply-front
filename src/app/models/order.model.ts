@@ -8,18 +8,12 @@ export interface OrderItem {
   price: number;
 }
 
-export interface RetailOrder {
-  id: string;
-  customerName: string;
-  items: OrderItem[];
-  total: number;
-  createdAt: string;
-  status: OrderStatus;
-}
-
 export interface WholesaleOrder {
   id: string;
-  businessId: string;
+  firstName: string;
+  lastName: string;
+  phone: string;
+  address: string;
   items: OrderItem[];
   total: number;
   createdAt: string;
