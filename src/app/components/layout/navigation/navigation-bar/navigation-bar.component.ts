@@ -1,5 +1,6 @@
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { Component, inject } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -9,7 +10,7 @@ import { NavigationUtilityService } from '../../../../services/utils/navigation/
 @Component({
   selector: 'app-navigation-bar',
   standalone: true,
-  imports: [MatDividerModule, RouterLink, RouterLinkActive, ScrollingModule],
+  imports: [MatDividerModule, RouterLink, RouterLinkActive, ScrollingModule, MatButtonModule],
   templateUrl: './navigation-bar.component.html',
   styleUrl: './navigation-bar.component.scss',
 })
@@ -75,5 +76,9 @@ export class NavigationBarComponent {
 
   constructor() {
     this.navigation.expanded.set(true);
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }

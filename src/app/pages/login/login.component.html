@@ -1,4 +1,13 @@
-<div class="login-container">
-  <h2>Login</h2>
-  <button (click)="loginWithGoogle()">Sign in with Google</button>
+<div class="login-wrapper">
+  <div class="logo-section">
+    <!-- Replace this with your actual SVG -->
+    <img src="assets/logo.svg" alt="Hilal Pines Logo" class="logo" />
+  </div>
+
+  <div class="login-section">
+    <button class="google-btn" (click)="loginWithGoogle()">
+      <img src="assets/google-icon.svg" alt="Google icon" />
+      Sign in with Google
+    </button>
+  </div>
 </div>

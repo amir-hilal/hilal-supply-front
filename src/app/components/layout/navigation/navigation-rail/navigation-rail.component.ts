@@ -5,6 +5,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { NavigationUtilityService } from '../../../../services/utils/navigation/navigation.service';
+import { AuthService } from '../../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-navigation-rail',
@@ -17,7 +18,8 @@ export class NavigationRailComponent {
   store = inject(Store);
   router = inject(Router);
   navigation = inject(NavigationUtilityService);
-
+  private authService = inject(AuthService);
+  
   navigationLinks = [
     {
       shortcuts: [
@@ -73,5 +75,9 @@ export class NavigationRailComponent {
 
   constructor() {
     this.navigation.expanded.set(true);
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }
