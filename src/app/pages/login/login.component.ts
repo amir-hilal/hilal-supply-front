@@ -6,10 +6,11 @@ import { take } from 'rxjs';
 import { FirebaseService } from '../../services/firebase/firebase.service';
 import { loginSuccess, logout, selectIsAuthenticated } from '../../store/auth/auth.index';
 import { setError } from '../../store/error/error.index';
+import { MatButton, MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-login',
-  imports: [],
+  imports: [MatButton, MatButtonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })

@@ -1,12 +1,16 @@
 <div class="login-wrapper">
-  <div class="logo-section">
+  <div class="logo-section flex align-items-center justify-content-center">
     <!-- Replace this with your actual SVG -->
-    <img src="assets/logo.svg" alt="Hilal Pines Logo" class="logo" />
+    <img src="img/logo.png" alt="Hilal Pines Logo" class="logo" />
   </div>
 
-  <div class="login-section">
-    <button class="google-btn" (click)="loginWithGoogle()">
-      <img src="assets/google-icon.svg" alt="Google icon" />
+  <div class="login-section flex align-items-center justify-content-center">
+    <button
+      mat-stroked-button
+      class="google-btn flex align-items-center label-large"
+      (click)="loginWithGoogle()"
+    >
+      <img src="img/google.svg" alt="Google icon" />
       Sign in with Google
     </button>
   </div>

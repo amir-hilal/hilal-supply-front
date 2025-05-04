@@ -21,6 +21,7 @@ import { loginSuccess, logout, setAuthReady } from './store/auth/auth.index';
       }
     </div>
   `,
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   private snackBar = inject(MatSnackBar);
