@@ -102,19 +102,27 @@
           </div>
         </div>
       </div>
-      <button mat-button class="logout-btn" (click)="logout()" tabindex="4">
-        <span class="material-symbols-outlined"> logout </span>
-        <span>Logout</span>
-      </button>
     </cdk-virtual-scroll-viewport>
     <!-- End of scrollable content -->
   </div>
 
-  <div class="navigation-arrow-container">
+  <div class="navigation-arrow-container flex align-items-center justify-content-between">
+    <button
+      mat-button
+      class="logout-btn"
+      (click)="logout()"
+      tabindex="4"
+      [ngClass]="{ expanded: navigation.expanded() }"
+    >
+      <span class="material-symbols-outlined"> logout </span>
+      @if (navigation.expanded()) {
+        <span>Logout</span>
+      }
+    </button>
     <div
       (click)="navigation.navigationToggle('rail')"
       (keydown.enter)="navigation.navigationToggle('rail')"
-      class="navigation-arrow"
+      class="navigation-arrow flex align-items-center justify-content-center"
       tabindex="9"
     >
       <span class="material-symbols-outlined"> chevron_left </span>

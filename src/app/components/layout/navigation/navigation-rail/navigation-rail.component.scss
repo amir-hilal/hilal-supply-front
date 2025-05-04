@@ -4,6 +4,15 @@ mat-divider {
   border-top-color: var(--outline);
 }
 
+::ng-deep{
+  .mdc-button__label{
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+  }
+}
+
+
 .navigation {
   height: 100vh;
 
@@ -75,12 +84,14 @@ mat-divider {
 
   .navigation-arrow-container {
     box-shadow: 0rem -0.125rem 0.3125rem rgba(87, 152, 84, 0.111);
-    display: flex;
+    height: 4rem;
+
+    .logout-btn.expanded{
+      margin-left: 1rem;
+    }
 
     .navigation-arrow {
-      margin-left: auto;
-      margin-top: auto;
-      padding: $navigation-padding;
+      margin: 0 .625em;
 
       &:hover {
         cursor: pointer;
@@ -155,9 +166,7 @@ mat-divider {
     }
   }
 
-  .navigation-arrow-container {
-    justify-content: flex-end;
-  }
+
 }
 
 .navigation.collapsed {
@@ -243,9 +252,4 @@ mat-divider {
     }
   }
 
-  .navigation-arrow-container {
-    .navigation-arrow {
-      margin-inline: auto;
-    }
-  }
 }

@@ -6,11 +6,12 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { NavigationUtilityService } from '../../../../services/utils/navigation/navigation.service';
 import { AuthService } from '../../../../services/auth/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-navigation-rail',
   standalone: true,
-  imports: [MatDividerModule, MatButtonModule, RouterLink, RouterLinkActive, ScrollingModule],
+  imports: [MatDividerModule, MatButtonModule, RouterLink, RouterLinkActive, ScrollingModule, CommonModule],
   templateUrl: './navigation-rail.component.html',
   styleUrl: './navigation-rail.component.scss',
 })
@@ -19,7 +20,7 @@ export class NavigationRailComponent {
   router = inject(Router);
   navigation = inject(NavigationUtilityService);
   private authService = inject(AuthService);
-  
+
   navigationLinks = [
     {
       shortcuts: [
