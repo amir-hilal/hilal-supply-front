@@ -1,1 +1,49 @@
-<p>products works!</p>
+<div class="container">
+  <!-- 🔍 Search bar -->
+  <div class="flex align-items-center search-bar-category-filters">
+    <mat-form-field
+      appearance="outline"
+      class="search-bar"
+      [ngClass]="isMobile ? 'body-small' : 'label-large'"
+      >
+      <input matInput placeholder="Search" [(ngModel)]="searchQuery" />
+      <mat-icon matPrefix>search</mat-icon>
+    </mat-form-field>
+
+    <!-- 🟢 Category filters -->
+    <div class="flex category-filters-wrapper">
+      <div class="flex category-filters">
+        <button
+          [ngClass]="isMobile ? 'body-small' : 'label-large'"
+          *ngFor="let category of categories"
+          mat-raised-button
+          color="{{ selectedCategory === category ? 'primary' : undefined }}"
+          (click)="selectCategory(category)"
+        >
+          {{ category }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🧺 Product Grid -->
+  <div class="product-grid">
+    <mat-card class="product-card" *ngFor="let product of filteredProducts">
+      <div class="product-header">
+        <h3>{{ product.name }}</h3>
+        <button mat-icon-button color="primary">
+          <mat-icon>star</mat-icon>
+        </button>
+      </div>
+
+      <div class="product-images">
+        <ng-container *ngFor="let size of product.sizes">
+          <div class="product-variant">
+            <img [src]="size.imageUrl" alt="Size image" />
+            <p>{{ size.label }} - {{ size.price }}$</p>
+          </div>
+        </ng-container>
+      </div>
+    </mat-card>
+  </div>
+</div>

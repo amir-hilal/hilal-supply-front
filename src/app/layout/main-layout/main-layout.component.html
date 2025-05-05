@@ -1,13 +1,15 @@
-<section class="app">
-  @if (isLoggedIn()) {
-    @if (!isMobile()) {
-      <app-navigation-rail />
-    } @else {
-      <app-navigation-bar />
+@if (viewportReady()) {
+  <section class="app">
+    @if (isLoggedIn()) {
+      @if (!isMobile()) {
+        <app-navigation-rail />
+      } @else {
+        <app-navigation-bar />
+      }
     }
-  }
 
-  <div [@routeAnimations]="prepareRoute(outlet)">
-    <router-outlet #outlet="outlet"></router-outlet>
-  </div>
-</section>
+    <div [@routeAnimations]="prepareRoute(outlet)">
+      <router-outlet #outlet="outlet"></router-outlet>
+    </div>
+  </section>
+}

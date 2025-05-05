@@ -45,6 +45,11 @@ $light-theme: mat.define-theme(
 
 :root {
   @include mat.all-component-themes($light-theme);
+
+  //rounded corners for search bar
+  @include mat.form-field-overrides((
+    outlined-container-shape: 32px
+  ));
 }
 
 html,

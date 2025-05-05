@@ -6,6 +6,7 @@ import { clearError, selectErrorMessage } from './store/error/error.index';
 
 import { onAuthStateChanged } from 'firebase/auth';
 import { FirebaseService } from './services/firebase/firebase.service';
+import { ViewportService } from './services/viewport/viewport.service';
 import { loginSuccess, logout, setAuthReady } from './store/auth/auth.index';
 
 @Component({
@@ -27,8 +28,11 @@ export class AppComponent implements OnInit {
   private snackBar = inject(MatSnackBar);
   private store = inject(Store);
   private firebaseService = inject(FirebaseService);
+  private viewportService = inject(ViewportService);
 
   authReady = signal(false);
+
+  viewportReady = this.viewportService.isReady$;
 
   ngOnInit(): void {
     const auth = this.firebaseService.getAuth();
