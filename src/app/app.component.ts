@@ -15,7 +15,7 @@ import { loginSuccess, logout, setAuthReady } from './store/auth/auth.index';
   imports: [RouterOutlet],
   template: `
     <div class="app-shell">
-      @if (authReady()) {
+      @if (authReady() && viewportReady()) {
         <router-outlet></router-outlet>
       } @else {
         <div class="app-loading">Loading in app...</div>
