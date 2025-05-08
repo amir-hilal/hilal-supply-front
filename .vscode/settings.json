@@ -20,5 +20,8 @@
   },
   "peacock.color": "#215732",
   "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "cSpell.words": [
+    "hilalpines"
+  ]
 }

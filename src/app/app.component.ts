@@ -3,6 +3,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { RouterOutlet } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { clearError, selectErrorMessage } from './store/error/error.index';
+import { AnimationItem } from 'lottie-web';
+import { LottieComponent, AnimationOptions } from 'ngx-lottie';
 
 import { onAuthStateChanged } from 'firebase/auth';
 import { FirebaseService } from './services/firebase/firebase.service';
@@ -12,13 +14,18 @@ import { loginSuccess, logout, setAuthReady } from './store/auth/auth.index';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, LottieComponent],
   template: `
     <div class="app-shell">
       @if (authReady() && viewportReady()) {
         <router-outlet></router-outlet>
       } @else {
-        <div class="app-loading">Loading in app...</div>
+        <div class="app-loading">
+          <ng-lottie
+            [options]="lottieOptions"
+            style="width: 150px; height: 150px; margin: 2rem auto; display: block;"
+          ></ng-lottie>
+        </div>
       }
     </div>
   `,
@@ -33,6 +40,14 @@ export class AppComponent implements OnInit {
   authReady = signal(false);
 
   viewportReady = this.viewportService.isReady$;
+
+  lottieOptions: AnimationOptions = {
+    path: '/lottie/hilalpines_loader.json',
+  };
+
+  animationCreated(animationItem: AnimationItem): void {
+    console.log(animationItem);
+  }
 
   ngOnInit(): void {
     const auth = this.firebaseService.getAuth();

@@ -4,6 +4,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { provideRouter } from '@angular/router';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { provideLottieOptions } from 'ngx-lottie';
 import { routes } from './app.routes';
 import { authReducer } from './store/auth/auth.index';
 import { errorReducer } from './store/error/error.index';
@@ -21,6 +22,9 @@ export const appConfig: ApplicationConfig = {
     provideStoreDevtools({
       maxAge: 25,
       logOnly: !isDevMode(),
+    }),
+    provideLottieOptions({
+      player: () => import('lottie-web'),
     }),
   ],
 };
